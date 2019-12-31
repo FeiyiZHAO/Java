@@ -1,0 +1,33 @@
+package javaproject;
+
+import java.lang.*;
+
+public class Professeur {
+	private int num;
+	private boolean disponible;
+	
+	public Professeur(int n) // constructeur
+	{
+		num=n;
+		disponible=true;
+	}
+	public void venir() // méthode qui animera un professeur pour le faire rejoindre l'étudiant qui l'a appelé et le rendra indisponible
+	{
+		disponible=false;
+	}
+	public void cafe() // méthode qui animera le professeur pour qu'il aille chercher un café et le rendra indisponible
+	{
+		disponible=false;
+	}
+	public void attendreEtudiant() // méthode qui animera un professeur pour le faire attendre dans un coin de la salle et le rendra disponible
+	{
+		disponible=true;
+	}
+	public boolean getDispo()
+	{
+		return disponible;
+	}
+	public void finalize(){} //destructeur
+}
+
+
