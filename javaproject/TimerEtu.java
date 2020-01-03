@@ -28,18 +28,18 @@ public class TimerEtu extends Thread {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-        frame.getContentPane().remove(btnEtudiant[numEtu]); //Enlèvement du bouton de l'étudiant si délai dépassé
+        frame.getContentPane().remove(btnEtudiant[numEtu]); //Enl¨¨vement du bouton de l'¨¦tudiant si délai dépass?
 		frame.repaint();
-		if(etu[numEtu].getEtat()==1)//Si l'étudiant avait été placé à un console 
+		if(etu[numEtu].getEtat()==1)//Si l'étudiant avait ét?plac??un console 
 		{
 			int i=0;
-			while(cons[i].getNumEtu()!=numEtu)//Chercher la console qui était occupé par l'étudiant
+			while(cons[i].getNumEtu()!=numEtu)//Chercher la console qui était occup?par l'étudiant
 			{
 				i++;
 			}
-			cons[i].liberer(); //Et la libérer
+			cons[i].liberer(); //Et la lib¨¦rer
 		}
-		niv.comboInit();//Remettre le combo à 1
+		niv.comboInit();//Remettre le combo ?1
 		
     }
 }

@@ -5,17 +5,19 @@ import java.lang.*;
 public class Professeur {
 	private int num;
 	private boolean disponible;
+	private int guideE;
 	
 	public Professeur(int n) // constructeur
 	{
 		num=n;
 		disponible=true;
+		guideE=0;
 	}
-	public void venir() // m√©thode qui animera un professeur pour le faire rejoindre l'√©tudiant qui l'a appel√© et le rendra indisponible
+	public void venir() // m®¶thode qui animera un professeur pour le faire rejoindre l'®¶tudiant qui l'a appel®¶ et le rendra indisponible
 	{
 		disponible=false;
 	}
-	public void cafe() // m√©thode qui animera le professeur pour qu'il aille chercher un caf√© et le rendra indisponible
+	public void cafe() // m®¶thode qui animera le professeur pour qu'il aille chercher un caf®¶ et le rendra indisponible
 	{
 		disponible=false;
 	}
@@ -24,10 +26,23 @@ public class Professeur {
 		disponible=true;
 	}
 	public boolean getDispo()
-	{
+	{		
 		return disponible;
 	}
 	public void finalize(){} //destructeur
+	
+	public int guideEPlus() {
+		guideE++;
+		return guideE;
+	}
+	public int getguideE() {
+	    return guideE;
+	}
+	public int rzguideE() {
+		guideE=0;
+		return guideE;
+	}
+	
 }
 
 

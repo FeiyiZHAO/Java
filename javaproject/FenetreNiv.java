@@ -61,7 +61,7 @@ public void actionPerformed(ActionEvent e) {
 		//new NiveauFacile();
 		this.dispose();}
 	if(composant=="Niveau moyen") {
-		new FenetreMoyen();
+		new NiveauMoyen();
 		this.dispose();
 	}
 		

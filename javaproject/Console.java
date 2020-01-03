@@ -9,6 +9,7 @@ public class Console {
 	private boolean panne;
 	private int numEtu;
 	private int numProf;
+	private int utiEtu;
 	
 	public Console(int n) // constructeur
 	{
@@ -61,6 +62,20 @@ public class Console {
 	public void setNumProf(int num)
 	{
 		numProf=num;
+	}
+	public int getutiEtu() {
+		return utiEtu;
+	}
+	public int utiEtuPlus() {
+		utiEtu++;
+		return utiEtu;
+	}
+	public int rzUtiEtu() {
+		utiEtu = 0;
+		return utiEtu;
+	}
+	public boolean etatPanne() {
+		return panne;
 	}
 	public void finalize(){} //destructeur
 }
