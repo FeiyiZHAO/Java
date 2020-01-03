@@ -31,9 +31,8 @@ public class Professeur {
 	}
 	public void finalize(){} //destructeur
 	
-	public int guideEPlus() {
+	public void guideEPlus() {
 		guideE++;
-		return guideE;
 	}
 	public int getguideE() {
 	    return guideE;

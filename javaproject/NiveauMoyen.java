@@ -10,7 +10,7 @@ import javax.swing.JButton;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 
-public class NiveauMoyen extends JFrame{
+public class NiveauMoyen {
 
 	private JFrame frame;
 	private Niveau niv;
@@ -39,13 +39,12 @@ public class NiveauMoyen extends JFrame{
 		});
 	}
 
-
 	/**
 	 * Create the application.
 	 */
 	public NiveauMoyen() {
 		frame = new JFrame();
-		niv = new Niveau(2);
+		niv = new Niveau(1);
 		prof=new Professeur[niv.getNbrP()];
 		cons=new Console[niv.getNbrC()];
 		btnC=new JButton[niv.getNbrC()];
@@ -57,10 +56,9 @@ public class NiveauMoyen extends JFrame{
 
 	/**
 	 * Initialize the contents of the frame.
-	 	*/
-	
+	 */
 	private void initialize() {
-	
+		
 		frame.setBounds(100, 100, 733, 508);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -70,7 +68,7 @@ public class NiveauMoyen extends JFrame{
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		frame.getContentPane().setLayout(gridBagLayout);
 		
-		//Affichage du chronomètres
+		//Affichage du chronomètre
 		GridBagConstraints gbc_btnJl2 = new GridBagConstraints();
     	gbc_btnJl2.gridx = 7;
     	gbc_btnJl2.gridy = 1;
@@ -101,6 +99,10 @@ public class NiveauMoyen extends JFrame{
 	    	frame.getContentPane().add(btnConsole[i], gbc_btnConsole);
 	    }
 		
+
+			
+		
+		
 		//Création automatisée des boutons des professeurs
 		btnProfesseur = new JButton[niv.getNbrP()];		
 		for(int j = 0; j<niv.getNbrP();j++)
@@ -112,19 +114,22 @@ public class NiveauMoyen extends JFrame{
 	    	gbc_btnProf.gridy = 2+(j*niv.getNbrC());
 	    	btnProfesseur[j].setBackground(new Color(255, 255, 255));
 	    	frame.getContentPane().add(btnProfesseur[j], gbc_btnProf);
-	    	deplacementProf(j);	// Action associée aux boutons professeurs				
+			for(int k = 0; k<niv.getNbrE();k++)
+			{
+				etu[k]=new Etudiant(k);
+	    	deplacementProf(k, j);	// Action associée aux boutons professeurs
+			}
 	    }
 		
+
 		//Création automatisée des boutons des étudiants 
 		btnEtudiant = new JButton[niv.getNbrE()];		
-	    
-new	Thread(new	Runnable()	{ 
+	    new	Thread(new	Runnable()	{ 
 			@Override
 			public void	run()	{
 				for(int k = 0; k<niv.getNbrE();k++)
 				{
 					btnEtudiant[k]=new JButton("Etudiant "+(k+1));
-					etu[k]=new Etudiant(k);
 					GridBagConstraints gbc_btnEtu = new GridBagConstraints();
 			    	gbc_btnEtu.gridx = 1;
 			    	gbc_btnEtu.gridy = 2+(niv.getNbrC()*k);
@@ -144,32 +149,32 @@ new	Thread(new	Runnable()	{
 			}
 	    }).start();	
 	    
-	  //Initialisation des boutons consoles temporaires pour les choix
-      for(int m=0;m<niv.getNbrC();m++)
+	    //Initialisation des boutons consoles temporaires pour les choix
+	    for(int m=0;m<niv.getNbrC();m++)
 	    {
 	    	btnC[m]=new JButton ("");
 	    }
-}
+	}
 	
-	public void deplacementProf(int p)
+	public void deplacementProf(int k, int p)
 	{
 		btnProfesseur[p].addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e)
 		    {
-		    	for(int j=0;j<niv.getNbrE();j++)
-		    	{
-		    		if((etu[j].getEtat())==1 && prof[p].getDispo()) //Si un étudiant est déj?plac?et que le professeur est disponible
+
+		    		
+		    		if((etu[k].getEtat())==1 && prof[p].getDispo()) //Si un étudiant est déj?plac?et que le professeur est disponible
 		    		{
 		    			for(int i=0;i<niv.getNbrC();i++)
 		    			{
-		    				if(cons[i].getLibreProf() && !cons[i].getLibreEtu() && !cons[i].etatPanne()) // Si la console est libre pour le professeur et occup?par un étudiant
+		    				if(cons[i].getLibreProf() && !cons[i].getLibreEtu()) // Si la console est libre pour le professeur et occup?par un étudiant
 		    				{
 								afficheCons(p,i); // Affichage du choix des consoles
 		    					btnProfesseur[p].setForeground(Color.BLACK);
 			    				btnProfesseur[p].setBackground(new Color(255, 255, 255));
 		    				}	
 		    			}	
-		    		}
+		    		
 		    	}		
 		    }
 		});

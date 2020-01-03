@@ -58,11 +58,14 @@ public class FenetreNiv extends JFrame implements ActionListener{
 public void actionPerformed(ActionEvent e) {
 	String composant = e.getActionCommand();
 	if(composant=="Niveau facile") {
-		//new NiveauFacile();
-		this.dispose();}
+		NiveauFacile facile = new NiveauFacile();
+		facile.main(null);
+		this.setVisible(false);
+		}
 	if(composant=="Niveau moyen") {
-		new NiveauMoyen();
-		this.dispose();
+		NiveauMoyen moyen = new NiveauMoyen();
+		moyen.main(null);
+		this.setVisible(false);
 	}
 		
 	if(composant=="Niveau difficile") {

@@ -99,6 +99,10 @@ public class NiveauFacile {
 	    	frame.getContentPane().add(btnConsole[i], gbc_btnConsole);
 	    }
 		
+
+			
+		
+		
 		//Création automatisée des boutons des professeurs
 		btnProfesseur = new JButton[niv.getNbrP()];		
 		for(int j = 0; j<niv.getNbrP();j++)
@@ -110,9 +114,14 @@ public class NiveauFacile {
 	    	gbc_btnProf.gridy = 2+(j*niv.getNbrC());
 	    	btnProfesseur[j].setBackground(new Color(255, 255, 255));
 	    	frame.getContentPane().add(btnProfesseur[j], gbc_btnProf);
-	    	deplacementProf(j);	// Action associée aux boutons professeurs
+			for(int k = 0; k<niv.getNbrE();k++)
+			{
+				etu[k]=new Etudiant(k);
+	    	deplacementProf(k, j);	// Action associée aux boutons professeurs
+			}
 	    }
 		
+
 		//Création automatisée des boutons des étudiants 
 		btnEtudiant = new JButton[niv.getNbrE()];		
 	    new	Thread(new	Runnable()	{ 
@@ -121,7 +130,6 @@ public class NiveauFacile {
 				for(int k = 0; k<niv.getNbrE();k++)
 				{
 					btnEtudiant[k]=new JButton("Etudiant "+(k+1));
-					etu[k]=new Etudiant(k);
 					GridBagConstraints gbc_btnEtu = new GridBagConstraints();
 			    	gbc_btnEtu.gridx = 1;
 			    	gbc_btnEtu.gridy = 2+(niv.getNbrC()*k);
@@ -148,14 +156,14 @@ public class NiveauFacile {
 	    }
 	}
 	
-	public void deplacementProf(int p)
+	public void deplacementProf(int k, int p)
 	{
 		btnProfesseur[p].addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e)
 		    {
-		    	for(int j=0;j<niv.getNbrE();j++)
-		    	{
-		    		if((etu[j].getEtat())==1 && prof[p].getDispo()) //Si un étudiant est déj?plac?et que le professeur est disponible
+
+		    		
+		    		if((etu[k].getEtat())==1 && prof[p].getDispo()) //Si un étudiant est déj?plac?et que le professeur est disponible
 		    		{
 		    			for(int i=0;i<niv.getNbrC();i++)
 		    			{
@@ -166,7 +174,7 @@ public class NiveauFacile {
 			    				btnProfesseur[p].setBackground(new Color(255, 255, 255));
 		    				}	
 		    			}	
-		    		}
+		    		
 		    	}		
 		    }
 		});

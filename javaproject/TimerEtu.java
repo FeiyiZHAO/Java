@@ -1,5 +1,7 @@
 package javaproject;
 
+import java.util.concurrent.CountDownLatch;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -11,7 +13,7 @@ public class TimerEtu extends Thread {
 	private Console cons[];
 	private Niveau niv;
 	private JButton btnEtudiant[];
-	
+	CountDownLatch latch;
 	public TimerEtu(JFrame f, JButton btne[],Niveau n,Etudiant e[],Console c[],int num)
 	{
 		numEtu=num;
@@ -20,6 +22,7 @@ public class TimerEtu extends Thread {
 		niv=n;
 		etu=e;
 		cons=c;
+		this.latch = latch;
 	}
 	
 	public void run() {
@@ -29,6 +32,7 @@ public class TimerEtu extends Thread {
 			e.printStackTrace();
 		}
         frame.getContentPane().remove(btnEtudiant[numEtu]); //Enl¨¨vement du bouton de l'¨¦tudiant si délai dépass?
+        etu[numEtu].sortir();
 		frame.repaint();
 		if(etu[numEtu].getEtat()==1)//Si l'étudiant avait ét?plac??un console 
 		{
@@ -40,6 +44,8 @@ public class TimerEtu extends Thread {
 			cons[i].liberer(); //Et la lib¨¦rer
 		}
 		niv.comboInit();//Remettre le combo ?1
+		latch.countDown();
+		 
 		
     }
 }

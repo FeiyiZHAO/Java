@@ -66,9 +66,8 @@ public class Console {
 	public int getutiEtu() {
 		return utiEtu;
 	}
-	public int utiEtuPlus() {
+	public void utiEtuPlus() {
 		utiEtu++;
-		return utiEtu;
 	}
 	public int rzUtiEtu() {
 		utiEtu = 0;
