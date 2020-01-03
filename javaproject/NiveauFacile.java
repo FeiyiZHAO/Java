@@ -127,6 +127,7 @@ public class NiveauFacile {
 	    new	Thread(new	Runnable()	{ 
 			@Override
 			public void	run()	{
+				int m = 0;
 				for(int k = 0; k<niv.getNbrE();k++)
 				{
 					btnEtudiant[k]=new JButton("Etudiant "+(k+1));
@@ -134,6 +135,7 @@ public class NiveauFacile {
 			    	gbc_btnEtu.gridx = 1;
 			    	gbc_btnEtu.gridy = 2+(niv.getNbrC()*k);
 			    	frame.getContentPane().add(btnEtudiant[k], gbc_btnEtu);
+			    	etu[k].entree();
 			    	btnEtudiant[k].setForeground(Color.WHITE);
 			    	btnEtudiant[k].setBackground(new Color(0, 225, 0));
 			    	actionEtudiant(k); // Fonction associant les actions aux boutons
@@ -145,9 +147,23 @@ public class NiveauFacile {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
+					
+					if (etu[k].getDansSalle()==false) {
+						m++;
+					}
 				}
+
+			    if (c.getTime()==0 || m==niv.getNbrE()) {
+			    	FenetreFini fini = new FenetreFini();
+			    	fini.main(null);
+			    }
+			    
 			}
 	    }).start();	
+	    
+
+	    
+
 	    
 	    //Initialisation des boutons consoles temporaires pour les choix
 	    for(int m=0;m<niv.getNbrC();m++)
@@ -229,6 +245,7 @@ public class NiveauFacile {
 	    				etu[cons[c].getNumEtu()].choisirUv(); // Méthode d'attente de 7 secondes pour choisir les UVs
 	    				frame.getContentPane().remove(btnEtudiant[cons[c].getNumEtu()]); //Supprimer une fois fait le bouton de l'étudiant
 	    				frame.repaint();
+	    				etu[cons[c].getNumEtu()].sortir();
 	    				cons[c].liberer(); //Libérer la console
 	    				niv.ajoutScore(); //Calcul du score
 	    				niv.comboPlus(); // Ajout au combo de 1
@@ -267,16 +284,19 @@ public class NiveauFacile {
 	    frame.getContentPane().add(btnC[c], gbc_btnb);
 	    frame.setBounds(100, 100, 734, 508);
 	    frame.setBounds(100, 100, 733, 508);
-	    	
+	   
 	    btnC[c].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 		    {
-			   	cons[c].setNumEtu(et);// Ajout du numéro de l'étudiant au niveau de la console
 			   	for(int i=0;i<niv.getNbrC();i++)
 			   	{
 			   		frame.getContentPane().remove(btnC[i]);
 			   	}
 			   	frame.repaint();
+			   	
+				if (etu[et].getDansSalle()==true){
+				cons[c].setNumEtu(et);// Ajout du numéro de l'étudiant au niveau de la console
+
 				GridBagConstraints gbc_btnEtu = new GridBagConstraints(); //Déplacement du bouton de l'étudiant près de la console sélectionnée
 				gbc_btnEtu.gridx = 3+c;
 				gbc_btnEtu.gridy = 3;
@@ -295,7 +315,9 @@ public class NiveauFacile {
 				cons[c].occuperEtu(); //Méthode pour montrer que la console n'est plus libre pour un étudiant
 				etu[et].etatPlus(); //L'état de l'étudiant augmente de 1
 			 }
+		    }
 		});
+	    
 	}
 
 	public void actionDeplacementEtuCons(int etu)

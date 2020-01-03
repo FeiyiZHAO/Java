@@ -22,7 +22,7 @@ public class TimerEtu extends Thread {
 		niv=n;
 		etu=e;
 		cons=c;
-		this.latch = latch;
+
 	}
 	
 	public void run() {
@@ -44,7 +44,7 @@ public class TimerEtu extends Thread {
 			cons[i].liberer(); //Et la lib¨¦rer
 		}
 		niv.comboInit();//Remettre le combo ?1
-		latch.countDown();
+
 		 
 		
     }
