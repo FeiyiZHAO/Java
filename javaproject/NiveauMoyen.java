@@ -68,7 +68,7 @@ public class NiveauMoyen {
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		frame.getContentPane().setLayout(gridBagLayout);
 		
-		//Affichage du chronomètre
+		//Affichage du chronom¨¨tre
 		GridBagConstraints gbc_btnJl2 = new GridBagConstraints();
     	gbc_btnJl2.gridx = 7;
     	gbc_btnJl2.gridy = 1;
@@ -86,7 +86,7 @@ public class NiveauMoyen {
     	gbc_btnScore.gridy = 1;
 		frame.getContentPane().add(niv.getText(),gbc_btnScore);
 		
-		//Création automatisée des boutons de consoles
+		//Cr¨¦ation automatis¨¦e des boutons de consoles
 		btnConsole = new JButton[niv.getNbrC()];		
 		for(int i = 0; i<niv.getNbrC();i++)
 	    {
@@ -103,7 +103,7 @@ public class NiveauMoyen {
 			
 		
 		
-		//Création automatisée des boutons des professeurs
+		//Cr¨¦ation automatis¨¦e des boutons des professeurs
 		btnProfesseur = new JButton[niv.getNbrP()];		
 		for(int j = 0; j<niv.getNbrP();j++)
 	    {
@@ -117,12 +117,12 @@ public class NiveauMoyen {
 			for(int k = 0; k<niv.getNbrE();k++)
 			{
 				etu[k]=new Etudiant(k);
-	    	deplacementProf(k, j);	// Action associée aux boutons professeurs
+	    	deplacementProf(k, j);	// Action associ¨¦e aux boutons professeurs
 			}
 	    }
 		
 
-		//Création automatisée des boutons des étudiants 
+		//Cr¨¦ation automatis¨¦e des boutons des ¨¦tudiants 
 		btnEtudiant = new JButton[niv.getNbrE()];		
 	    new	Thread(new	Runnable()	{ 
 			@Override
@@ -134,14 +134,15 @@ public class NiveauMoyen {
 			    	gbc_btnEtu.gridx = 1;
 			    	gbc_btnEtu.gridy = 2+(niv.getNbrC()*k);
 			    	frame.getContentPane().add(btnEtudiant[k], gbc_btnEtu);
+			    	etu[k].entree();
 			    	btnEtudiant[k].setForeground(Color.WHITE);
 			    	btnEtudiant[k].setBackground(new Color(0, 225, 0));
 			    	actionEtudiant(k); // Fonction associant les actions aux boutons
-			    	t[k]=new TimerEtu(frame,btnEtudiant,niv,etu,cons,k); // Permet de créer le timer de 25 secondes 
-			        													// et les actions qui en découlent
+			    	t[k]=new TimerEtu(frame,btnEtudiant,niv,etu,cons,k); // Permet de cr¨¦er le timer de 25 secondes 
+			        													// et les actions qui en d¨¦coulent
 					t[k].start();
 					try {
-						Thread.sleep(10000); // attente de 10 secondes entre chaque entrée d'étudiants
+						Thread.sleep(10000); // attente de 10 secondes entre chaque entr¨¦e d'¨¦tudiants
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -163,11 +164,11 @@ public class NiveauMoyen {
 		    {
 
 		    		
-		    		if((etu[k].getEtat())==1 && prof[p].getDispo()) //Si un étudiant est déj?plac?et que le professeur est disponible
+		    		if((etu[k].getEtat())==1 && prof[p].getDispo()) //Si un ¨¦tudiant est d¨¦j?plac?et que le professeur est disponible
 		    		{
 		    			for(int i=0;i<niv.getNbrC();i++)
 		    			{
-		    				if(cons[i].getLibreProf() && !cons[i].getLibreEtu()) // Si la console est libre pour le professeur et occup?par un étudiant
+		    				if(cons[i].getLibreProf() && !cons[i].getLibreEtu()) // Si la console est libre pour le professeur et occup?par un ¨¦tudiant
 		    				{
 								afficheCons(p,i); // Affichage du choix des consoles
 		    					btnProfesseur[p].setForeground(Color.BLACK);
@@ -181,8 +182,8 @@ public class NiveauMoyen {
 	}
 	public void afficheCons(int p,int c)
 	{
-		frame.getContentPane().remove(btnC[c]); // Enlever les boutons s'ils étaient déj?affich?pour un autre bouton
-		frame.repaint(); //Mise ?jour de la fenêtre
+		frame.getContentPane().remove(btnC[c]); // Enlever les boutons s'ils ¨¦taient d¨¦j?affich?pour un autre bouton
+		frame.repaint(); //Mise ?jour de la fen¨ºtre
 		btnC[c]=new JButton("Console "+(c+1));
 		
 		GridBagConstraints gbc_btnb = new GridBagConstraints();
@@ -191,19 +192,19 @@ public class NiveauMoyen {
 	    btnC[c].setForeground(Color.WHITE);
 	    btnC[c].setBackground(new Color(0, 225, 0));
 	    frame.getContentPane().add(btnC[c], gbc_btnb);
-	    frame.setBounds(100, 100, 734, 508);// Lors de l'ajout d'un bouton, mise ?jour par agrandissement et rapetissage de la fenêtre
+	    frame.setBounds(100, 100, 734, 508);// Lors de l'ajout d'un bouton, mise ?jour par agrandissement et rapetissage de la fen¨ºtre
 	    frame.setBounds(100, 100, 733, 508);
 	    	
-	    btnC[c].addActionListener(new ActionListener() { // action associée pour chacun des boutons
+	    btnC[c].addActionListener(new ActionListener() { // action associ¨¦e pour chacun des boutons
 			 public void actionPerformed(ActionEvent e)
 			 {
-			    cons[c].setNumProf(p); // Ajout du numéro du professeur au niveau de la console
+			    cons[c].setNumProf(p); // Ajout du num¨¦ro du professeur au niveau de la console
 			    for(int i=0;i<niv.getNbrC();i++)
 			    {
-			    	frame.getContentPane().remove(btnC[i]); // Enlèvement des boutons temporaires de choix
+			    	frame.getContentPane().remove(btnC[i]); // Enl¨¨vement des boutons temporaires de choix
 			    }
 			    frame.repaint();
-				GridBagConstraints gbc_btnProf = new GridBagConstraints();// Déplacement du bouton du professeur ?la console
+				GridBagConstraints gbc_btnProf = new GridBagConstraints();// D¨¦placement du bouton du professeur ?la console
 				gbc_btnProf.gridx = 3+c;
 				gbc_btnProf.gridy = 2;
 				frame.remove(btnProfesseur[p]);
@@ -219,26 +220,26 @@ public class NiveauMoyen {
 	    		}
 				frame.setBounds(100, 100, 734, 508);
 				frame.setBounds(100, 100, 733, 508);
-				prof[p].venir(); // Méthode pour mettre le professeur en occup?
-				cons[c].occuperProf(); // Méthode pour dire que la console est prise par un professeur
+				prof[p].venir(); // M¨¦thode pour mettre le professeur en occup?
+				cons[c].occuperProf(); // M¨¦thode pour dire que la console est prise par un professeur
 				new	Thread(new	Runnable()	{
 					@Override
 	    			public void	run()	{
-	    				etu[cons[c].getNumEtu()].etatPlus(); // L'étudiant a un état en plus
-	    				t[cons[c].getNumEtu()].stop(); // Stop des 25 secondes de satisfaction de l'étudiant
-	    				etu[cons[c].getNumEtu()].choisirUv(); // Méthode d'attente de 7 secondes pour choisir les UVs
-	    				frame.getContentPane().remove(btnEtudiant[cons[c].getNumEtu()]); //Supprimer une fois fait le bouton de l'étudiant
+	    				etu[cons[c].getNumEtu()].etatPlus(); // L'¨¦tudiant a un ¨¦tat en plus
+	    				t[cons[c].getNumEtu()].stop(); // Stop des 25 secondes de satisfaction de l'¨¦tudiant
+	    				etu[cons[c].getNumEtu()].choisirUv(); // M¨¦thode d'attente de 7 secondes pour choisir les UVs
+	    				frame.getContentPane().remove(btnEtudiant[cons[c].getNumEtu()]); //Supprimer une fois fait le bouton de l'¨¦tudiant
 	    				frame.repaint();
-	    				cons[c].liberer(); //Libérer la console
+	    				cons[c].liberer(); //Lib¨¦rer la console
 	    				niv.ajoutScore(); //Calcul du score
 	    				niv.comboPlus(); // Ajout au combo de 1
 	    				
 	    				frame.getContentPane().remove(btnProfesseur[cons[c].getNumProf()]);
-	    				GridBagConstraints gbc_btnProf = new GridBagConstraints();//D¨¦placement du professeur ¨¤ sa place d'origine
+	    				GridBagConstraints gbc_btnProf = new GridBagConstraints();//D¡§|placement du professeur ¡§¡è sa place d'origine
 	    				gbc_btnProf.gridx = 5;
 	    				gbc_btnProf.gridy = 2+(niv.getNbrC()*cons[c].getNumProf());
 	    				prof[cons[c].getNumProf()].guideEPlus();
-	    				//avoir termin¨¦ le guide de 2 ¨¦tudiants
+	    				//avoir termin¡§| le guide de 2 ¡§|tudiants
 	    				if ( prof[cons[c].getNumProf()].getguideE() == 2) {
 	    					TimerProf p=new TimerProf(frame, btnProfesseur, cons, c, gbc_btnProf);
 	    					p.start();
@@ -248,7 +249,7 @@ public class NiveauMoyen {
 		    				frame.getContentPane().add(btnProfesseur[cons[c].getNumProf()], gbc_btnProf);
 	    				}
 	    					    				
-	    				// avoir ¨¦t¨¦ utilis¨¦e par trois ¨¦tudiant
+	    				// avoir ¡§|t¡§| utilis¡§|e par trois ¡§|tudiant
 	    				cons[c].utiEtuPlus();
 	    				int m = cons[c].getutiEtu();
 	    				if (m==3) {
@@ -277,8 +278,8 @@ public class NiveauMoyen {
 	
 	public void apparitionChoixCons(int et,int c)
 	{
-		frame.getContentPane().remove(btnC[c]); // Enlever les boutons s'ils étaient déj?affich?pour un autre bouton
-		frame.repaint(); //Mise ?jour de la fenêtre
+		frame.getContentPane().remove(btnC[c]); // Enlever les boutons s'ils ¨¦taient d¨¦j?affich?pour un autre bouton
+		frame.repaint(); //Mise ?jour de la fen¨ºtre
 		btnC[c]=new JButton("Console "+(c+1));
 		GridBagConstraints gbc_btnb = new GridBagConstraints();
 	    gbc_btnb.gridx = 2;
@@ -299,9 +300,9 @@ public class NiveauMoyen {
 			   	frame.repaint();
 			   	
 			   	if (etu[et].getDansSalle()==true){
-				cons[c].setNumEtu(et);// Ajout du numéro de l'étudiant au niveau de la console
+				cons[c].setNumEtu(et);// Ajout du num¨¦ro de l'¨¦tudiant au niveau de la console
 			   
-				GridBagConstraints gbc_btnEtu = new GridBagConstraints(); //Déplacement du bouton de l'étudiant près de la console sélectionnée
+				GridBagConstraints gbc_btnEtu = new GridBagConstraints(); //D¨¦placement du bouton de l'¨¦tudiant pr¨¨s de la console s¨¦lectionn¨¦e
 				gbc_btnEtu.gridx = 3+c;
 				gbc_btnEtu.gridy = 3;
 				frame.remove(btnEtudiant[et]);
@@ -316,8 +317,8 @@ public class NiveauMoyen {
 				    	btnProfesseur[j].setBackground(new Color(0, 225, 0));
 					}
 				}
-				cons[c].occuperEtu(); //Méthode pour montrer que la console n'est plus libre pour un étudiant
-				etu[et].etatPlus(); //L'état de l'étudiant augmente de 1
+				cons[c].occuperEtu(); //M¨¦thode pour montrer que la console n'est plus libre pour un ¨¦tudiant
+				etu[et].etatPlus(); //L'¨¦tat de l'¨¦tudiant augmente de 1
 			 }
 		    }
 		});
@@ -329,7 +330,7 @@ public class NiveauMoyen {
 		{
 			if(cons[i].getLibreEtu() && !cons[i].etatPanne()) //Si la console est libre et pas en panne
 			{	
-				apparitionChoixCons(etu,i);// faire apparaître la console dans les choix de placement	
+				apparitionChoixCons(etu,i);// faire appara?tre la console dans les choix de placement	
 			}
 		}
 	}

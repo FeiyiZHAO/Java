@@ -15,10 +15,12 @@ public class Etudiant {
 	}
 	public void choisirUv()
 	{
+		if (dansSalle == true) {
 		try {
 			Thread.sleep(7000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
+		}
 		}
 	}
 	public void satisfait()
