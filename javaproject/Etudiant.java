@@ -5,13 +5,15 @@ public class Etudiant {
 	private boolean satisfait;
 	private int etat;
 	private boolean dansSalle;
+
 	
 	public Etudiant(int n)
 	{
 		num=n;
 		satisfait=false;
 		etat=0;
-		dansSalle=false;
+		dansSalle=true;
+
 	}
 	public void choisirUv()
 	{
@@ -21,6 +23,7 @@ public class Etudiant {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		dansSalle = false;
 		}
 	}
 	public void satisfait()
@@ -40,10 +43,12 @@ public class Etudiant {
 	}
 	public void sortir() {
 		dansSalle = false;
+	
 	}
 	public boolean getDansSalle() {
 		return dansSalle;
 	}
+
 	public void finalize(){} //destructeur	
 }
 

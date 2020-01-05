@@ -9,7 +9,8 @@ public class Counter extends Thread{
 	
 	private JLabel jl2;
     private JLabel jl3;
-    long time;
+    private Niveau niv;
+    private long time;
 
     
     public void run() {
@@ -28,14 +29,17 @@ public class Counter extends Thread{
             }
             time--;
         }
- 
+
+		    FenetreFini fini = new FenetreFini(niv.getScore());
+		    fini.main(null);
     }
     
 
-    public Counter(long t) {
+    public Counter(Niveau n) {
         jl2 = new JLabel();
         jl3 = new JLabel();
-        this.time = t;
+        niv = n;
+        this.time = niv.getTemps();
  
     }
     

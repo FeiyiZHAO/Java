@@ -35,7 +35,9 @@ public class NiveauFacile {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+
 			}
+
 		});
 	}
 
@@ -58,7 +60,7 @@ public class NiveauFacile {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
+		frame.setTitle("Niveau Facile");
 		frame.setBounds(100, 100, 733, 508);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -75,10 +77,12 @@ public class NiveauFacile {
     	GridBagConstraints gbc_btnJl3 = new GridBagConstraints();
     	gbc_btnJl3.gridx = 8;
     	gbc_btnJl3.gridy = 1;
-		Counter c = new Counter(60*niv.getTemps());
-		frame.getContentPane().add(c.getJl2(), gbc_btnJl2);
-		frame.getContentPane().add(c.getJl3(), gbc_btnJl3);
-		c.start();
+		Counter counter = new Counter(niv);
+		frame.getContentPane().add(counter.getJl2(), gbc_btnJl2);
+		frame.getContentPane().add(counter.getJl3(), gbc_btnJl3);
+		counter.start();
+		
+
 		
 		//Affichage du score
 		GridBagConstraints gbc_btnScore = new GridBagConstraints();
@@ -121,15 +125,22 @@ public class NiveauFacile {
 			}
 	    }
 		
-
+	    
+	    //Initialisation des boutons consoles temporaires pour les choix
+	    for(int m=0;m<niv.getNbrC();m++)
+	    {
+	    	btnC[m]=new JButton ("");
+	    }
+	    
 		//Création automatisée des boutons des étudiants 
-		btnEtudiant = new JButton[niv.getNbrE()];		
+		btnEtudiant = new JButton[niv.getNbrE()];	
+		
 	    new	Thread(new	Runnable()	{ 
 			@Override
 			public void	run()	{
-				int m = 0;
 				for(int k = 0; k<niv.getNbrE();k++)
 				{
+					etu[k]=new Etudiant(k);
 					btnEtudiant[k]=new JButton("Etudiant "+(k+1));
 					GridBagConstraints gbc_btnEtu = new GridBagConstraints();
 			    	gbc_btnEtu.gridx = 1;
@@ -139,7 +150,7 @@ public class NiveauFacile {
 			    	btnEtudiant[k].setForeground(Color.WHITE);
 			    	btnEtudiant[k].setBackground(new Color(0, 225, 0));
 			    	actionEtudiant(k); // Fonction associant les actions aux boutons
-			    	t[k]=new TimerEtu(frame,btnEtudiant,niv,etu,cons,k); // Permet de créer le timer de 25 secondes 
+			    	t[k]= new TimerEtu(frame,btnEtudiant,niv,etu,cons,k); // Permet de créer le timer de 25 secondes 
 			        													// et les actions qui en découlent
 					t[k].start();
 					try {
@@ -148,28 +159,20 @@ public class NiveauFacile {
 						e.printStackTrace();
 					}
 					
-					if (etu[k].getDansSalle()==false) {
-						m++;
-					}
 				}
+				try {
+					Thread.sleep(50000); 
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				frame.setVisible(false);
 
-			    if (c.getTime()==0 || m==niv.getNbrE()) {
-			    	FenetreFini fini = new FenetreFini();
-			    	fini.main(null);
-			    }
-			    
 			}
+			
 	    }).start();	
-	    
 
-	    
 
-	    
-	    //Initialisation des boutons consoles temporaires pour les choix
-	    for(int m=0;m<niv.getNbrC();m++)
-	    {
-	    	btnC[m]=new JButton ("");
-	    }
+
 	}
 	
 	public void deplacementProf(int k, int p)

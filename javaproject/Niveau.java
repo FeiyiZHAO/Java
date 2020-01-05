@@ -27,18 +27,24 @@ public class Niveau {
 				nbrE = 4;
 				nbrC = 2;
 				nbrP = 2;
-			break;
+				temps = 90;
+				break;
 			case 2 : 
 				nbrE = 6;
 				nbrC = 2;
 				nbrP = 2;
+				temps = 120;
 			break;
 			case 3 : 
 				nbrE = 10;
 				nbrC = 3;
 				nbrP = 3;
+				temps = 240;
 			break;
 		}
+	}
+	public int getNiv() {
+		return niv;
 	}
 	public int getNbrE() // récupération du nombre d'étudiants
 	{
@@ -81,6 +87,7 @@ public class Niveau {
 		text.setText("Score : "+score);
 		return text;
 	}
+
 	public void finalize(){} //destructeur
 }
 

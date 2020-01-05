@@ -44,7 +44,7 @@ public class NiveauMoyen {
 	 */
 	public NiveauMoyen() {
 		frame = new JFrame();
-		niv = new Niveau(1);
+		niv = new Niveau(2);
 		prof=new Professeur[niv.getNbrP()];
 		cons=new Console[niv.getNbrC()];
 		btnC=new JButton[niv.getNbrC()];
@@ -58,7 +58,7 @@ public class NiveauMoyen {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
+		frame.setTitle("Niveau Moyen");
 		frame.setBounds(100, 100, 733, 508);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -75,7 +75,7 @@ public class NiveauMoyen {
     	GridBagConstraints gbc_btnJl3 = new GridBagConstraints();
     	gbc_btnJl3.gridx = 8;
     	gbc_btnJl3.gridy = 1;
-		Counter c = new Counter(60*niv.getTemps());
+		Counter c = new Counter(niv);
 		frame.getContentPane().add(c.getJl2(), gbc_btnJl2);
 		frame.getContentPane().add(c.getJl3(), gbc_btnJl3);
 		c.start();
@@ -147,6 +147,12 @@ public class NiveauMoyen {
 						e.printStackTrace();
 					}
 				}
+				try {
+					Thread.sleep(60000); // attente de 10 secondes entre chaque entrée d'étudiants
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				frame.setVisible(false);
 			}
 	    }).start();	
 	    
@@ -230,6 +236,7 @@ public class NiveauMoyen {
 	    				etu[cons[c].getNumEtu()].choisirUv(); // M¨¦thode d'attente de 7 secondes pour choisir les UVs
 	    				frame.getContentPane().remove(btnEtudiant[cons[c].getNumEtu()]); //Supprimer une fois fait le bouton de l'¨¦tudiant
 	    				frame.repaint();
+	    				etu[cons[c].getNumEtu()].sortir();
 	    				cons[c].liberer(); //Lib¨¦rer la console
 	    				niv.ajoutScore(); //Calcul du score
 	    				niv.comboPlus(); // Ajout au combo de 1
