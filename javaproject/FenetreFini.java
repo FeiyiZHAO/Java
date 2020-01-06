@@ -94,5 +94,3 @@ public class FenetreFini extends JFrame {
 
 
 }
-
-

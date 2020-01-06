@@ -5,7 +5,7 @@ public class Etudiant {
 	private boolean satisfait;
 	private int etat;
 	private boolean dansSalle;
-
+	private String major;
 	
 	public Etudiant(int n)
 	{
@@ -15,6 +15,15 @@ public class Etudiant {
 		dansSalle=true;
 
 	}
+	public Etudiant(int n, String major)
+	{
+		num=n;
+		satisfait=false;
+		etat=0;
+		dansSalle=true;
+		this.major = major;
+	}
+	
 	public void choisirUv()
 	{
 		if (dansSalle == true) {
@@ -47,6 +56,9 @@ public class Etudiant {
 	}
 	public boolean getDansSalle() {
 		return dansSalle;
+	}
+	public String getMajor() {
+		return major;
 	}
 
 	public void finalize(){} //destructeur	

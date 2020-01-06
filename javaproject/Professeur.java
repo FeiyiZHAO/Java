@@ -6,12 +6,20 @@ public class Professeur {
 	private int num;
 	private boolean disponible;
 	private int guideE;
+	private String major;
 	
 	public Professeur(int n) // constructeur
 	{
 		num=n;
 		disponible=true;
 		guideE=0;
+	}
+	public Professeur(int n, String major) // constructeur
+	{
+		num=n;
+		disponible=true;
+		guideE=0;
+		this.major = major;
 	}
 	public void venir() // m¨¦thode qui animera un professeur pour le faire rejoindre l'¨¦tudiant qui l'a appel¨¦ et le rendra indisponible
 	{
@@ -40,6 +48,9 @@ public class Professeur {
 	public int rzguideE() {
 		guideE=0;
 		return guideE;
+	}
+	public String getMajor() {
+		return major;
 	}
 	
 }

@@ -27,19 +27,19 @@ public class Niveau {
 				nbrE = 4;
 				nbrC = 2;
 				nbrP = 2;
-				temps = 90;
+				temps = 60;
 				break;
 			case 2 : 
 				nbrE = 6;
 				nbrC = 2;
 				nbrP = 2;
-				temps = 120;
+				temps = 90;
 			break;
 			case 3 : 
 				nbrE = 10;
 				nbrC = 3;
 				nbrP = 3;
-				temps = 240;
+				temps = 150;
 			break;
 		}
 	}

@@ -161,7 +161,7 @@ public class NiveauFacile {
 					
 				}
 				try {
-					Thread.sleep(50000); 
+					Thread.sleep(20000); 
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

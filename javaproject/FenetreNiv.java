@@ -69,7 +69,9 @@ public void actionPerformed(ActionEvent e) {
 	}
 		
 	if(composant=="Niveau difficile") {
-		
+		NiveauDiffi d = new NiveauDiffi();
+		d.main(null);
+		this.setVisible(false);
 	}
 	
 	if(composant=="Retourner") {
