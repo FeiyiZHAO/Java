@@ -6,8 +6,12 @@ import  java.awt.*;
 import  java.awt.event.*;
 
 public class FenetreNiv extends JFrame implements ActionListener{
-	private JFrame frame;
-  public FenetreNiv(){
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public FenetreNiv(){
 		
     this.setTitle("Jeu de gestion");
     this.setSize(300, 300);
@@ -58,19 +62,19 @@ public class FenetreNiv extends JFrame implements ActionListener{
 public void actionPerformed(ActionEvent e) {
 	String composant = e.getActionCommand();
 	if(composant=="Niveau facile") {
-		NiveauFacile facile = new NiveauFacile();
-		facile.main(null);
+		//NiveauFacile facile = new NiveauFacile();
+		NiveauFacile.main(null);
 		this.setVisible(false);
 		}
 	if(composant=="Niveau moyen") {
-		NiveauMoyen moyen = new NiveauMoyen();
-		moyen.main(null);
+		//NiveauMoyen moyen = new NiveauMoyen();
+		NiveauMoyen.main(null);
 		this.setVisible(false);
 	}
 		
 	if(composant=="Niveau difficile") {
-		NiveauDiffi d = new NiveauDiffi();
-		d.main(null);
+		//NiveauDiffi d = new NiveauDiffi();
+		NiveauDiffi.main(null);
 		this.setVisible(false);
 	}
 	

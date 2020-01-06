@@ -1,8 +1,8 @@
 package javaproject;
 
-import java.lang.*;
 
 public class Console {
+	@SuppressWarnings("unused")
 	private int num;
 	private boolean libreEtu;
 	private boolean libreProf;

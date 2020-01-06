@@ -1,15 +1,11 @@
 package javaproject;
 
-import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.GridBagLayout;
-import javax.swing.JTextPane;
-import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Insets;
@@ -20,6 +16,11 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 
 public class FenetreFini extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static int score;
 
 
@@ -79,7 +80,7 @@ public class FenetreFini extends JFrame {
 		    public void actionPerformed(ActionEvent e)
 		    {
 		    	setVisible(false);
-		    	Fenetre fen=new Fenetre();
+		    	new Fenetre();
 		    }});
 		
 		//Affichage du score

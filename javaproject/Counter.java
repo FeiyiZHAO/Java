@@ -1,5 +1,5 @@
 package javaproject;
-import java.lang.*;
+
 import javax.swing.JLabel;
 
 
@@ -30,8 +30,8 @@ public class Counter extends Thread{
             time--;
         }
 
-		    FenetreFini fini = new FenetreFini(niv.getScore());
-		    fini.main(null);
+		    //FenetreFini fini = new FenetreFini(niv.getScore());
+		    FenetreFini.main(null);
     }
     
 

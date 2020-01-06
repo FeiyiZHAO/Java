@@ -1,6 +1,5 @@
 package javaproject;
 
-import java.lang.System;
 
 import javax.swing.JLabel;
 

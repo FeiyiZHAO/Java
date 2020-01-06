@@ -1,6 +1,5 @@
 package javaproject;
 
-import java.util.concurrent.CountDownLatch;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;

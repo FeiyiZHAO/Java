@@ -242,6 +242,7 @@ public class NiveauDiffi {
 				prof[p].venir(); // M¨¦thode pour mettre le professeur en occup?
 				cons[c].occuperProf(); // M¨¦thode pour dire que la console est prise par un professeur
 				new	Thread(new	Runnable()	{
+					@SuppressWarnings("deprecation")
 					@Override
 	    			public void	run()	{
 	    				etu[cons[c].getNumEtu()].etatPlus(); // L'¨¦tudiant a un ¨¦tat en plus

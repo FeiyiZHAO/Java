@@ -1,6 +1,5 @@
 package javaproject;
 
-import java.lang.*;
 
 public class Professeur {
 	private int num;
@@ -10,13 +9,13 @@ public class Professeur {
 	
 	public Professeur(int n) // constructeur
 	{
-		num=n;
+		setNum(n);
 		disponible=true;
 		guideE=0;
 	}
 	public Professeur(int n, String major) // constructeur
 	{
-		num=n;
+		setNum(n);
 		disponible=true;
 		guideE=0;
 		this.major = major;
@@ -51,6 +50,12 @@ public class Professeur {
 	}
 	public String getMajor() {
 		return major;
+	}
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
 	}
 	
 }

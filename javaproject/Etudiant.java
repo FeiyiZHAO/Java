@@ -1,8 +1,9 @@
 package javaproject;
 
 public class Etudiant {
+	@SuppressWarnings("unused")
 	private int num;
-	private boolean satisfait;
+	//private boolean satisfait;
 	private int etat;
 	private boolean dansSalle;
 	private String major;
@@ -10,7 +11,7 @@ public class Etudiant {
 	public Etudiant(int n)
 	{
 		num=n;
-		satisfait=false;
+		//satisfait=false;
 		etat=0;
 		dansSalle=true;
 
@@ -18,7 +19,7 @@ public class Etudiant {
 	public Etudiant(int n, String major)
 	{
 		num=n;
-		satisfait=false;
+		//satisfait=false;
 		etat=0;
 		dansSalle=true;
 		this.major = major;
@@ -35,10 +36,12 @@ public class Etudiant {
 		dansSalle = false;
 		}
 	}
+	/*
 	public void satisfait()
 	{
 		satisfait=true;
 	}
+	*/
 	public int getEtat()
 	{
 		return etat;

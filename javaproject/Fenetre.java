@@ -3,11 +3,16 @@ package javaproject;
 import  javax.swing.*;
 import  java.awt.*;
 import  java.awt.event.*;
-import java.applet.*;
+
 
 public class Fenetre extends JFrame implements ActionListener{
 
-  public Fenetre(){
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+public Fenetre(){
 		
     this.setTitle("Jeu de gestion");
     this.setSize(300, 120);

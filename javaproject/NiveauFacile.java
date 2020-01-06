@@ -144,7 +144,8 @@ public class NiveauFacile {
 					btnEtudiant[k]=new JButton("Etudiant "+(k+1));
 					GridBagConstraints gbc_btnEtu = new GridBagConstraints();
 			    	gbc_btnEtu.gridx = 1;
-			    	gbc_btnEtu.gridy = 2+(niv.getNbrC()*k);
+			    	//gbc_btnEtu.gridy = 2+(niv.getNbrC()*k);
+			    	gbc_btnEtu.gridy = 2+k;
 			    	frame.getContentPane().add(btnEtudiant[k], gbc_btnEtu);
 			    	etu[k].entree();
 			    	btnEtudiant[k].setForeground(Color.WHITE);
@@ -241,6 +242,7 @@ public class NiveauFacile {
 				prof[p].venir(); // Méthode pour mettre le professeur en occup?
 				cons[c].occuperProf(); // Méthode pour dire que la console est prise par un professeur
 				new	Thread(new	Runnable()	{
+					@SuppressWarnings("deprecation")
 					@Override
 	    			public void	run()	{
 	    				etu[cons[c].getNumEtu()].etatPlus(); // L'étudiant a un état en plus
@@ -254,7 +256,8 @@ public class NiveauFacile {
 	    				niv.comboPlus(); // Ajout au combo de 1
 	    				GridBagConstraints gbc_btnProf = new GridBagConstraints();//Déplacement du professeur ?sa place d'origine
 	    				gbc_btnProf.gridx = 5;
-	    				gbc_btnProf.gridy = 2+(niv.getNbrC()*cons[c].getNumProf());
+	    				//gbc_btnProf.gridy = 2+(niv.getNbrC()*cons[c].getNumProf());
+	    				gbc_btnProf.gridy = 2+cons[c].getNumProf();
 	    				frame.getContentPane().remove(btnProfesseur[cons[c].getNumProf()]);
 	    				frame.getContentPane().add(btnProfesseur[cons[c].getNumProf()], gbc_btnProf);
 	    				frame.setBounds(100, 100, 734, 508);
