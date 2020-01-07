@@ -234,7 +234,7 @@ public class NiveauMoyen {
 	    			public void	run()	{
 	    				etu[cons[c].getNumEtu()].etatPlus(); // L'¨¦tudiant a un ¨¦tat en plus
 	    				t[cons[c].getNumEtu()].stop(); // Stop des 25 secondes de satisfaction de l'¨¦tudiant
-	    				etu[cons[c].getNumEtu()].choisirUv(); // M¨¦thode d'attente de 7 secondes pour choisir les UVs
+	    				etu[cons[c].getNumEtu()].choisirUv(7000); // M¨¦thode d'attente de 7 secondes pour choisir les UVs
 	    				frame.getContentPane().remove(btnEtudiant[cons[c].getNumEtu()]); //Supprimer une fois fait le bouton de l'¨¦tudiant
 	    				frame.repaint();
 	    				etu[cons[c].getNumEtu()].sortir();

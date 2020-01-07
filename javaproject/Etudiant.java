@@ -3,15 +3,17 @@ package javaproject;
 public class Etudiant {
 	@SuppressWarnings("unused")
 	private int num;
-	//private boolean satisfait;
+	@SuppressWarnings("unused")
+	private boolean satisfait;
 	private int etat;
 	private boolean dansSalle;
 	private String major;
+	private boolean selectif;
 	
 	public Etudiant(int n)
 	{
 		num=n;
-		//satisfait=false;
+		satisfait=false;
 		etat=0;
 		dansSalle=true;
 
@@ -19,29 +21,28 @@ public class Etudiant {
 	public Etudiant(int n, String major)
 	{
 		num=n;
-		//satisfait=false;
+		satisfait=false;
 		etat=0;
 		dansSalle=true;
 		this.major = major;
 	}
 	
-	public void choisirUv()
+	public void choisirUv(int time_interval)
 	{
 		if (dansSalle == true) {
 		try {
-			Thread.sleep(7000);
+			Thread.sleep(time_interval);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		dansSalle = false;
 		}
 	}
-	/*
+
 	public void satisfait()
 	{
 		satisfait=true;
 	}
-	*/
 	public int getEtat()
 	{
 		return etat;
@@ -62,6 +63,14 @@ public class Etudiant {
 	}
 	public String getMajor() {
 		return major;
+	}
+	
+	public void setDifficile(boolean selectif) {
+		this.selectif = selectif;
+	}
+	
+	public boolean getDifficile() {
+		return selectif;
 	}
 
 	public void finalize(){} //destructeur	

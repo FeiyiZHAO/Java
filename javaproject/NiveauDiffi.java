@@ -127,6 +127,9 @@ public class NiveauDiffi {
 				if(k%2==0)	etu[k]=new Etudiant(k, "INFO");
 				else etu[k]=new Etudiant(k, "IMSI");
 				
+				if(k%5==0)	etu[k].setDifficile(true);
+				else etu[k].setDifficile(false);
+				
 				deplacementProf(k, j);	// Action associ¨¦e aux boutons professeurs
 			}
 	    }
@@ -138,10 +141,23 @@ public class NiveauDiffi {
 			public void	run()	{
 				for(int k = 0; k<niv.getNbrE();k++)
 				{
+					String typeEtuString = "";
+					if(k%5==0)	typeEtuString += "Difficile ";
+					else typeEtuString += "Pas Difficile ";
+					
+					if(k%2==0)
+						typeEtuString += "INFO Etudiant "+(k+1);
+					else
+						typeEtuString += "IMSI Etudiant "+(k+1);
+					
+					btnEtudiant[k]=new JButton(typeEtuString);
+					
+					/*
 					if(k%2==0)
 						btnEtudiant[k]=new JButton("INFO Etudiant "+(k+1));
 					else
 						btnEtudiant[k]=new JButton("IMSI Etudiant "+(k+1));
+					*/
 					
 					GridBagConstraints gbc_btnEtu = new GridBagConstraints();
 					gbc_btnEtu.gridx = 1;
@@ -164,7 +180,7 @@ public class NiveauDiffi {
 					
 				}
 				try {
-					Thread.sleep(50000); 
+					Thread.sleep(50000); // attente de 10 secondes entre chaque entrée d'étudiants
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -247,7 +263,10 @@ public class NiveauDiffi {
 	    			public void	run()	{
 	    				etu[cons[c].getNumEtu()].etatPlus(); // L'¨¦tudiant a un ¨¦tat en plus
 	    				t[cons[c].getNumEtu()].stop(); // Stop des 25 secondes de satisfaction de l'¨¦tudiant
-	    				etu[cons[c].getNumEtu()].choisirUv(); // M¨¦thode d'attente de 7 secondes pour choisir les UVs
+	    				if(etu[cons[c].getNumEtu()].getDifficile())	etu[cons[c].getNumEtu()].choisirUv(10000);
+	    				else etu[cons[c].getNumEtu()].choisirUv(7000);
+	    				//etu[cons[c].getNumEtu()].choisirUv(); // M¨¦thode d'attente de 7 secondes pour choisir les UVs
+	    				
 	    				frame.getContentPane().remove(btnEtudiant[cons[c].getNumEtu()]); //Supprimer une fois fait le bouton de l'¨¦tudiant
 	    				frame.repaint();
 	    				etu[cons[c].getNumEtu()].sortir();

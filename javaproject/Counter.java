@@ -30,7 +30,8 @@ public class Counter extends Thread{
             time--;
         }
 
-		    //FenetreFini fini = new FenetreFini(niv.getScore());
+		    @SuppressWarnings("unused")
+			FenetreFini fini = new FenetreFini(niv.getScore());
 		    FenetreFini.main(null);
     }
     

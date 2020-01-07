@@ -247,7 +247,7 @@ public class NiveauFacile {
 	    			public void	run()	{
 	    				etu[cons[c].getNumEtu()].etatPlus(); // L'étudiant a un état en plus
 	    				t[cons[c].getNumEtu()].stop(); // Stop des 25 secondes de satisfaction de l'étudiant
-	    				etu[cons[c].getNumEtu()].choisirUv(); // Méthode d'attente de 7 secondes pour choisir les UVs
+	    				etu[cons[c].getNumEtu()].choisirUv(7000); // Méthode d'attente de 7 secondes pour choisir les UVs
 	    				frame.getContentPane().remove(btnEtudiant[cons[c].getNumEtu()]); //Supprimer une fois fait le bouton de l'étudiant
 	    				frame.repaint();
 	    				etu[cons[c].getNumEtu()].sortir();
